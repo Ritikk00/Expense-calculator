@@ -1,0 +1,103 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Income Expense Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="bg-gradient-to-r from-indigo-600 to-blue-500 text-white rounded-xl p-6 shadow-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-semibold">Income Expense Calculator</h1>
+      
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 sm:mt-0 w-full sm:w-auto">
+        <div class="bg-white/10 rounded-lg p-3 text-center">
+          <div class="text-xs uppercase opacity-80">Total Income</div>
+          <div id="total-income" class="text-lg font-bold">₹0.00</div>
+        </div>
+        <div class="bg-white/10 rounded-lg p-3 text-center">
+          <div class="text-xs uppercase opacity-80">Total Expenses</div>
+          <div id="total-expenses" class="text-lg font-bold">₹0.00</div>
+        </div>
+        <div class="bg-white/10 rounded-lg p-3 text-center">
+          <div class="text-xs uppercase opacity-80">Net Balance</div>
+          <div id="net-balance" class="text-lg font-bold">₹0.00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-1 bg-white rounded-xl p-5 shadow">
+        <h2 class="text-lg font-semibold mb-4">Add / Edit Entry</h2>
+        <form id="entry-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Description</label>
+            <input id="desc" type="text" placeholder="e.g., Salary or Groceries" class="w-full border border-gray-200 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-300" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Amount</label>
+            <input id="amount" type="number" step="0.01" placeholder="0.00" class="w-full border border-gray-200 rounded-md p-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-2">Type</label>
+            <div class="flex gap-4 items-center">
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="type" value="income" checked class="peer sr-only" />
+                <span class="px-3 py-1 rounded-md border border-gray-200 peer-checked:bg-green-50 peer-checked:border-green-300">Income</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input type="radio" name="type" value="expense" class="peer sr-only" />
+                <span class="px-3 py-1 rounded-md border border-gray-200 peer-checked:bg-red-50 peer-checked:border-red-300">Expense</span>
+              </label>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <button type="submit" id="submit-btn" class="flex-1 bg-indigo-600 text-white rounded-md py-2 font-medium">Add Entry</button>
+            <button type="button" id="reset-btn" class="flex-0 px-4 bg-gray-200 rounded-md">Reset</button>
+          </div>
+        </form>
+
+        <div class="mt-5 text-sm text-gray-500">
+          <button id="about-btn" class="underline">About / README</button>
+          <div id="about" class="mt-3 hidden text-xs bg-gray-50 p-3 rounded-md">
+            <strong>Project:</strong> Income Expense Calculator using HTML, TailwindCSS, and vanilla JavaScript. Data persists in localStorage. Features include Create, Read, Update, Delete, filters (All/Income/Expense), totals, responsive design, and an about/readme section.
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 bg-white rounded-xl p-5 shadow flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold">Entries</h2>
+          <div class="flex items-center gap-3">
+            <label class="text-sm">Filter</label>
+            <div class="flex gap-2 items-center">
+              <label class="inline-flex items-center gap-1">
+                <input type="radio" name="filter" value="all" class="peer sr-only" checked />
+                <span class="px-3 py-1 rounded-md border border-gray-200 peer-checked:bg-gray-100">All</span>
+              </label>
+              <label class="inline-flex items-center gap-1">
+                <input type="radio" name="filter" value="income" class="peer sr-only" />
+                <span class="px-3 py-1 rounded-md border border-gray-200 peer-checked:bg-green-50">Income</span>
+              </label>
+              <label class="inline-flex items-center gap-1">
+                <input type="radio" name="filter" value="expense" class="peer sr-only" />
+                <span class="px-3 py-1 rounded-md border border-gray-200 peer-checked:bg-red-50">Expense</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div id="entries-list" class="divide-y divide-gray-100 overflow-auto max-h-[60vh]"></div>
+
+        <div id="empty" class="text-center text-gray-400 py-10">No entries yet. Add your first entry.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
